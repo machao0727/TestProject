@@ -6,7 +6,7 @@ import com.dongyuwuye.compontent_base.ListActivity
 import com.dongyuwuye.compontent_base.annotation.ActivityFeature
 import com.machao.test_project.binder.YearListBinder
 import com.machao.test_project.mvp.contact.YearListContact
-import com.machao.test_project.mvp.model.YearModel
+import com.machao.test_project.mvp.model.QuarterModel
 import com.machao.test_project.mvp.presenter.YearListPresenter
 import me.drakeet.multitype.MultiTypeAdapter
 
@@ -28,6 +28,10 @@ class YearListActivity : ListActivity(),YearListContact.YearListView {
 
     override fun BackPressed() {
         finish()
+    }
+
+    override fun getResourceId(): String {
+        return "a807b7ab-6cad-4aa6-87d0-e283a7353a0f"
     }
 
     override fun showError() {
@@ -59,7 +63,7 @@ class YearListActivity : ListActivity(),YearListContact.YearListView {
 
     override fun getRegisteredAdapter(): MultiTypeAdapter {
         var mAdapter=MultiTypeAdapter(dataItems)
-        mAdapter.register(YearModel::class.java,YearListBinder(this))
+        mAdapter.register(QuarterModel::class.java,YearListBinder(this))
         return mAdapter
     }
 

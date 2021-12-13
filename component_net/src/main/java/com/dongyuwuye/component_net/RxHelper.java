@@ -25,32 +25,10 @@ public class RxHelper {
      */
     public static <T> ObservableTransformer<BaseResp<T>, T> handleResult() {
         return upstream -> upstream.flatMap(result -> {
-                    if (result.getCode() == 200) {
-                        return createData(result.getData());
+                    if (result.isSuccess()) {
+                        return createData(result.getResult());
                     } else {
-                        return Observable.error(new ServiceException(result.getMsg(), result.getCode()));
-                    }
-                }
-        ).subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
-    }
-
-    /**
-     * Rx优雅处理服务器返回
-     * 仅对正确结果进行处理,其余均视为服务器错误
-     *
-     * @param <T>
-     * @return
-     */
-    public static <T> ObservableTransformer<T, T> handleResult2() {
-        return upstream -> upstream.flatMap(result -> {
-                    if (result instanceof BaseResp) {
-                        if (((BaseResp) result).getCode() == 200) {
-                            return createData(result);
-                        } else {
-                            return Observable.error(new ServiceException(((BaseResp) result).getMsg(), ((BaseResp) result).getCode()));
-                        }
-                    } else {
-                        return createData(result);
+                        return Observable.error(new ServiceException("网络异常",-1));
                     }
                 }
         ).subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());

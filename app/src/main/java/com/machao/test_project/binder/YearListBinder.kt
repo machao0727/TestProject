@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dongyuwuye.compontent_base.BaseActivity
 import com.machao.test_project.R
-import com.machao.test_project.mvp.model.YearModel
+import com.machao.test_project.mvp.model.QuarterModel
 import kotlinx.android.synthetic.main.item_year_layout.view.*
 import me.drakeet.multitype.ItemViewBinder
 
@@ -16,7 +16,7 @@ import me.drakeet.multitype.ItemViewBinder
  * email:
  * 年数据item
  */
-class YearListBinder(val mContext: BaseActivity) : ItemViewBinder<YearModel, YearListBinder.ViewHolder>() {
+class YearListBinder(val mContext: BaseActivity) : ItemViewBinder<QuarterModel, YearListBinder.ViewHolder>() {
 
 
     override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): ViewHolder {
@@ -25,7 +25,7 @@ class YearListBinder(val mContext: BaseActivity) : ItemViewBinder<YearModel, Yea
 
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, item: YearModel) {
+    override fun onBindViewHolder(holder: ViewHolder, item: QuarterModel) {
 
 
     }

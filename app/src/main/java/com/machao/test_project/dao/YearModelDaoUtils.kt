@@ -1,6 +1,6 @@
 package com.machao.test_project.dao
 
-import com.machao.test_project.mvp.model.YearModel
+import com.machao.test_project.mvp.model.QuarterModel
 import com.raizlabs.android.dbflow.sql.language.SQLite
 
 /**
@@ -12,15 +12,15 @@ class YearModelDaoUtils {
     companion object{
 
         //保存数据
-        fun saveYearModel(data:List<YearModel>){
-            data.forEach { item: YearModel ->
+        fun saveYearModel(data:List<QuarterModel>){
+            data.forEach { item: QuarterModel ->
                 item.save()
             }
         }
 
         //获取数据
-        fun  getYearModel(limit:Int):List<YearModel>{
-            return SQLite.select().from(YearModel::class.java).limit(limit).queryList()
+        fun  getYearModel(offset:Int,limit:Int):List<QuarterModel>{
+            return SQLite.select().from(QuarterModel::class.java).limit(limit).offset(offset).queryList()
         }
     }
 }

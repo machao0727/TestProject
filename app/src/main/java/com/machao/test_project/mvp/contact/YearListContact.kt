@@ -10,7 +10,7 @@ import com.dongyuwuye.compontent_base.IListView
  */
 interface YearListContact {
     interface YearListView : IListView {
-
+        fun getResourceId():String
     }
 
     interface YearListPresenter : IBasePresenter {

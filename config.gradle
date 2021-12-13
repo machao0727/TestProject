@@ -50,10 +50,6 @@ ext {
             crashreport_upgrade           : "1.3.8",
             nativecrashreport             : "3.6.0.1",
 
-            //极光
-            jpush                         : "3.5.4",
-            jcore                         : "2.2.4",
-
             //生命周期
             rxlifecycle                   : "3.0.0",
 

@@ -101,10 +101,6 @@ dependencies {
     api "com.tencent.bugly:crashreport_upgrade:${rootProject.ext.cfgs.crashreport_upgrade}"
     api "com.tencent.bugly:nativecrashreport:${rootProject.ext.cfgs.nativecrashreport}"
 
-    //============   极光 ======================//
-    api "cn.jiguang.sdk:jpush:${rootProject.ext.cfgs.jpush}"
-    api "cn.jiguang.sdk:jcore:${rootProject.ext.cfgs.jcore}"
-
     //============   生命周期 ======================//
     api "com.trello.rxlifecycle3:rxlifecycle:${rootProject.ext.cfgs.rxlifecycle}"
     api "com.trello.rxlifecycle3:rxlifecycle-android:${rootProject.ext.cfgs.rxlifecycle}"

@@ -11,7 +11,6 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/bg_color"
         android:text="let begging"
         android:onClick="start"
         app:layout_constraintBottom_toBottomOf="parent"

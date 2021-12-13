@@ -10,11 +10,14 @@ import com.raizlabs.android.dbflow.structure.BaseModel
  *
  */
 @Table(database = AppDataBase::class, allFields = true)
-class YearModel :BaseModel(){
-    @PrimaryKey(autoincrement = true)
-    var id: Long = 0
+class QuarterModel :BaseModel(){
 
-    var number: String? = null
+    var volume_of_mobile_data: String? = null
+
+    var quarter: String? = null
+
+    @PrimaryKey
+    var _id: Int? = null
 
 
 }
