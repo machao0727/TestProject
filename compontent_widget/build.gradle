@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.jakewharton.butterknife'
+android {
+    compileSdkVersion rootProject.ext.cfgs.compileSdkVersion
+    buildToolsVersion rootProject.ext.cfgs.buildToolsVersion
+
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.cfgs.minSdkVersion
+        targetSdkVersion rootProject.ext.cfgs.targetSdkVersion
+        versionCode rootProject.ext.cfgs.versionCode
+        versionName rootProject.ext.cfgs.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        debug {
+            versionNameSuffix "_debug"
+            minifyEnabled false
+        }
+
+        // 用于测试混淆是否正常!
+        beta {
+            versionNameSuffix "_beta"
+            minifyEnabled true
+            debuggable true
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        // 如果需要 release的测试打包 注意推送信息!
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':compontent_sdk')
+    annotationProcessor "com.github.bumptech.glide:compiler:${rootProject.ext.cfgs.glide}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.cfgs.butterknife_compiler}"
+}

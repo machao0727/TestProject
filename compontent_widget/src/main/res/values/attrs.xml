@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="StateLayout">
+        <attr name="errorDrawable" format="reference" />
+        <attr name="emptyDrawable" format="reference" />
+        <attr name="noNetworkDrawable" format="reference" />
+        <attr name="progressView" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="AVLoadingIndicatorView">
+        <attr name="indicator">
+            <flag name="BallPulse" value="0" />
+            <flag name="BallGridPulse" value="1" />
+            <flag name="BallClipRotate" value="2" />
+            <flag name="BallClipRotatePulse" value="3" />
+            <flag name="SquareSpin" value="4" />
+            <flag name="BallClipRotateMultiple" value="5" />
+            <flag name="BallPulseRise" value="6" />
+            <flag name="BallRotate" value="7" />
+            <flag name="CubeTransition" value="8" />
+            <flag name="BallZigZag" value="9" />
+            <flag name="BallZigZagDeflect" value="10" />
+            <flag name="BallTrianglePath" value="11" />
+            <flag name="BallScale" value="12" />
+            <flag name="LineScale" value="13" />
+            <flag name="LineScaleParty" value="14" />
+            <flag name="BallScaleMultiple" value="15" />
+            <flag name="BallPulseSync" value="16" />
+            <flag name="BallBeat" value="17" />
+            <flag name="LineScalePulseOut" value="18" />
+            <flag name="LineScalePulseOutRapid" value="19" />
+            <flag name="BallScaleRipple" value="20" />
+            <flag name="BallScaleRippleMultiple" value="21" />
+            <flag name="BallSpinFadeLoader" value="22" />
+            <flag name="LineSpinFadeLoader" value="23" />
+            <flag name="TriangleSkewSpin" value="24" />
+            <flag name="Pacman" value="25" />
+            <flag name="BallGridBeat" value="26" />
+            <flag name="SemiCircleSpin" value="27" />
+        </attr>
+        <attr name="indicator_color" format="color" />
+    </declare-styleable>
+
+    <!--等待框-->
+    <declare-styleable name="MProgressWheel">
+        <attr name="mn_progressIndeterminate" format="boolean" />
+        <attr name="mn_barColor" format="color" />
+        <attr name="mn_rimColor" format="color" />
+        <attr name="mn_rimWidth" format="dimension" />
+        <attr name="mn_spinSpeed" format="float" />
+        <attr name="mn_barSpinCycleTime" format="integer" />
+        <attr name="mn_circleRadius" format="dimension" />
+        <attr name="mn_fillRadius" format="boolean" />
+        <attr name="mn_barWidth" format="dimension" />
+        <attr name="mn_linearProgress" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundRelativeLayout">
+        <attr name="roundRadius" format="dimension" />
+        <attr name="WH" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ImageLinesView">
+        <attr name="VerticalSpacing" format="dimension" />
+        <attr name="HorizontalSpacing" format="dimension" />
+        <attr name="ImageWidth" format="dimension" />
+        <attr name="ImageHeight" format="dimension" />
+        <attr name="OneLineCounts" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="ShadowLayout">
+        <attr name="shadowColor" format="color" />
+        <attr name="shadowRadius" format="dimension" />
+        <attr name="shadowRoundRadius" format="dimension" />
+        <attr name="shadowShape">
+            <flag name="rectangle" value="0x0001" />
+            <flag name="round_rectangle" value="0x0100" />
+        </attr>
+        <attr name="shadowSide">
+            <flag name="all" value="0x1111" />
+            <flag name="left" value="0x0001" />
+            <flag name="top" value="0x0010" />
+            <flag name="right" value="0x0100" />
+            <flag name="bottom" value="0x1000" />
+        </attr>
+        <attr name="round_corner">
+            <flag name="corner_all" value="0x1111" />
+            <flag name="corner_leftTop" value="0x0001" />
+            <flag name="corner_leftBottom" value="0x0010" />
+            <flag name="corner_rightTop" value="0x0100" />
+            <flag name="corner_rightBottom" value="0x1000" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="ChooseView">
+        <attr name="title" format="string" />
+        <attr name="titleSize" format="dimension" />
+        <attr name="icon" format="reference" />
+        <attr name="iconText" format="string" />
+        <attr name="rightIcon" format="reference" />
+        <attr name="rightText" format="string" />
+        <attr name="leftIcon" format="reference" />
+        <attr name="isNeed" format="boolean" />
+        <attr name="contentType">
+            <!-- 文本模式-->
+            <enum name="text" value="0x00000000" />
+            <!-- 输入框模式-->
+            <enum name="editText" value="0x00000001" />
+        </attr>
+        <attr name="inputType">
+            <!-- 数字-->
+            <enum name="number" value="0x00000002" />
+            <!-- 小数-->
+            <enum name="numberDecimal" value="0x00000003" />
+            <!--text-->
+            <enum name="text" value="0x00000004" />
+        </attr>
+        <attr name="contentTextSize" format="dimension" />
+        <attr name="textHint" format="string" />
+        <attr name="textHintColor" format="reference" />
+    </declare-styleable>
+
+    <!-- RTextView -->
+    <declare-styleable name="RTextView">
+
+        <!--四周圆角度、左上、右上、左下、右下-->
+        <attr name="corner_radius" format="dimension" />
+        <attr name="corner_radius_top_left" format="dimension" />
+        <attr name="corner_radius_top_right" format="dimension" />
+        <attr name="corner_radius_bottom_left" format="dimension" />
+        <attr name="corner_radius_bottom_right" format="dimension" />
+
+        <!--虚线边框宽度/间隔-->
+        <attr name="border_dash_width" format="dimension" />
+        <attr name="border_dash_gap" format="dimension" />
+
+        <!--边框宽度-->
+        <attr name="border_width_normal" format="dimension" />
+        <attr name="border_width_pressed" format="dimension" />
+        <attr name="border_width_unable" format="dimension" />
+
+        <!--边框颜色-->
+        <attr name="border_color_normal" format="color" />
+        <attr name="border_color_pressed" format="color" />
+        <attr name="border_color_unable" format="color" />
+
+        <!--背景颜色-->
+        <attr name="background_normal" format="color" />
+        <attr name="background_pressed" format="color" />
+        <attr name="background_unable" format="color" />
+
+        <!--文本颜色-->
+        <attr name="text_color_normal" format="color" />
+        <attr name="text_color_pressed" format="color" />
+        <attr name="text_color_unable" format="color" />
+
+        <!--图标资源-->
+        <attr name="icon_src_normal" format="reference" />
+        <attr name="icon_src_pressed" format="reference" />
+        <attr name="icon_src_unable" format="reference" />
+
+        <!--图标、大小、位置-->
+        <attr name="icon_height" format="dimension" />
+        <attr name="icon_width" format="dimension" />
+        <attr name="icon_direction">
+            <enum name="left" value="1" />
+            <enum name="top" value="2" />
+            <enum name="right" value="3" />
+            <enum name="bottom" value="4" />
+        </attr>
+
+        <!--字体样式-->
+        <attr name="text_typeface" format="string" />
+
+    </declare-styleable>
+
+    <declare-styleable name="BubbleImageView">
+        <attr name="arrowWidth" format="dimension" />
+        <attr name="angle" format="dimension" />
+        <attr name="arrowHeight" format="dimension" />
+        <attr name="arrowPosition" format="dimension" />
+        <attr name="bubbleColor" format="color" />
+        <attr name="arrowLocation" format="enum">
+            <enum name="left" value="0x00" />
+            <enum name="right" value="0x01" />
+            <enum name="top" value="0x02" />
+            <enum name="bottom" value="0x03" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="VoiceDisplayView">
+        <attr name="isLeft" format="boolean" />
+        <attr name="isShow" format="boolean" />
+        <attr name="canVoice" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="SignatureView">
+        <attr name="minWidth" format="dimension" />
+        <attr name="maxWidth" format="dimension" />
+        <attr name="penColor" format="color" />
+        <attr name="velocityFilterWeight" format="float" />
+    </declare-styleable>
+    <declare-styleable name="MRecyclerView">
+        <!--是否有底部边距-->
+        <attr name="isBottom" format="boolean" />
+        <attr name="BottomHeight" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="NumberView">
+        <!--是否仅用于展示-->
+        <attr name="isBtnShow" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="EditTextView">
+        <attr name="hint" format="string" />
+    </declare-styleable>
+
+
+</resources>

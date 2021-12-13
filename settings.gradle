@@ -1,0 +1,6 @@
+rootProject.name = "TestProject"
+include ':app'
+include ':compontent_base'
+include ':compontent_widget'
+include ':component_net'
+include ':compontent_sdk'

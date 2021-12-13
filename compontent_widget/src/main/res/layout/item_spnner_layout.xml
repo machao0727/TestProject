@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/mTvSpnnerItem"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textColor="@drawable/selector_color_white_gray6"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:background="@drawable/selector_bg_white_blue"
+        android:text="item"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp" />
+
+</FrameLayout>

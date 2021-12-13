@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="base_paimary">#008577</color>
+
+    <color name="base_white">#ffffff</color>
+
+    <color name="base_text">#333333</color>
+    <color name="base_gray_6">#666666</color>
+</resources>

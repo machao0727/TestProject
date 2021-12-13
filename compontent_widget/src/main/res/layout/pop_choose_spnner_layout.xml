@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mParentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.lihang.ShadowLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        app:hl_cornerRadius="10dp"
+        app:hl_dx="0dp"
+        app:hl_dy="0dp"
+        app:hl_shadowBackColor="@color/widget_white"
+        app:hl_shadowColor="#6573B6"
+        app:hl_shadowLimit="5dp">
+
+        <com.dongyuwuye.compontent_widget.MaxScrollView
+            android:layout_width="match_parent"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/mLLContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+
+            </LinearLayout>
+        </com.dongyuwuye.compontent_widget.MaxScrollView>
+    </com.lihang.ShadowLayout>
+
+    <ImageView
+        android:id="@+id/mIvImage"
+        android:layout_width="match_parent"
+        android:layout_marginTop="-2.2dp"
+        android:layout_height="wrap_content" />
+</FrameLayout>

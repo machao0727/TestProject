@@ -1,0 +1,166 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.ext.cfgs.compileSdkVersion
+    buildToolsVersion rootProject.ext.cfgs.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.cfgs.minSdkVersion
+        targetSdkVersion rootProject.ext.cfgs.targetSdkVersion
+        versionCode rootProject.ext.cfgs.versionCode
+        versionName rootProject.ext.cfgs.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        debug {
+            versionNameSuffix "_debug"
+            minifyEnabled false
+        }
+
+        // 用于测试混淆是否正常!
+        beta {
+            versionNameSuffix "_beta"
+            minifyEnabled true
+            debuggable true
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        // 如果需要 release的测试打包 注意推送信息!
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/gradle/incremental.annotation.processors'
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+
+    api "androidx.appcompat:appcompat:${rootProject.ext.cfgs.appcompat}"
+    api "com.google.android.material:material:${rootProject.ext.cfgs.material}"
+    api "androidx.constraintlayout:constraintlayout:${rootProject.ext.cfgs.constraintlayout}"
+    api "androidx.legacy:legacy-support-v4:${rootProject.ext.cfgs.legacy_support_v4}"
+
+    //RxJava&Retrofit
+    api "com.squareup.retrofit2:retrofit:${rootProject.ext.cfgs.retrofit}"
+    api "io.reactivex.rxjava2:rxjava:${rootProject.ext.cfgs.rxjava}"
+    api "io.reactivex.rxjava2:rxandroid:${rootProject.ext.cfgs.rxandroid}"
+    api "com.squareup.retrofit2:converter-gson:${rootProject.ext.cfgs.converter_gson}"
+    api "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.cfgs.adapter_rxjava2}"
+    api "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.cfgs.logging_interceptor}"
+
+    //butterknife
+    api "com.jakewharton:butterknife:${rootProject.ext.cfgs.butterknife_compiler}"
+    api "com.jakewharton:butterknife-compiler:${rootProject.ext.cfgs.butterknife_compiler}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.cfgs.butterknife_compiler}"
+
+    //glide
+    api "com.github.bumptech.glide:glide:${rootProject.ext.cfgs.glide}"
+    api "com.github.bumptech.glide:compiler:${rootProject.ext.cfgs.glide}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${rootProject.ext.cfgs.glide}"
+
+    //multitype
+    api "me.drakeet.multitype:multitype:${rootProject.ext.cfgs.multitype}"
+
+    //permission
+    api "org.permissionsdispatcher:permissionsdispatcher:${rootProject.ext.cfgs.permissionsdispatcher}"
+    annotationProcessor "org.permissionsdispatcher:permissionsdispatcher-processor:${rootProject.ext.cfgs.permissionsdispatcher}"
+
+    //statusbar
+    api "com.jaeger.statusbarutil:library:${rootProject.ext.cfgs.statusbarutil}"
+
+    //dbflow
+    api "com.github.Raizlabs.DBFlow:dbflow:${rootProject.ext.cfgs.dbflow}"
+    api "com.github.Raizlabs.DBFlow:dbflow-core:${rootProject.ext.cfgs.dbflow}"
+
+    //弹性布局
+    api "com.google.android:flexbox:${rootProject.ext.cfgs.flexbox}"
+
+    //============   bugly ======================//
+    api "com.tencent.bugly:crashreport_upgrade:${rootProject.ext.cfgs.crashreport_upgrade}"
+    api "com.tencent.bugly:nativecrashreport:${rootProject.ext.cfgs.nativecrashreport}"
+
+    //============   极光 ======================//
+    api "cn.jiguang.sdk:jpush:${rootProject.ext.cfgs.jpush}"
+    api "cn.jiguang.sdk:jcore:${rootProject.ext.cfgs.jcore}"
+
+    //============   生命周期 ======================//
+    api "com.trello.rxlifecycle3:rxlifecycle:${rootProject.ext.cfgs.rxlifecycle}"
+    api "com.trello.rxlifecycle3:rxlifecycle-android:${rootProject.ext.cfgs.rxlifecycle}"
+    api "com.trello.rxlifecycle3:rxlifecycle-components:${rootProject.ext.cfgs.rxlifecycle}"
+
+    //    //============   二维码生成 ======================//
+
+    //    implementation 'com.google.zxing:core:3.3.0'
+
+    //============   banner ======================//
+    api "com.ms:Banner-androidx:${rootProject.ext.cfgs.Banner}"
+
+    //============   stomp ======================//
+    api "org.java-websocket:Java-WebSocket:${rootProject.ext.cfgs.WebSocket}"
+
+    //ShadowLayout
+    api "com.github.lihangleo2:ShadowLayout:${rootProject.ext.cfgs.ShadowLayout}"
+
+    //eventbus
+    api "org.greenrobot:eventbus:${rootProject.ext.cfgs.eventbus}"
+
+    //================umeng======================//
+
+    //友盟基础包
+    api "com.umeng.sdk:common:${rootProject.ext.cfgs.common}"
+    api "com.umeng.sdk:utdid:${rootProject.ext.cfgs.utdid}"
+
+    //友盟统计
+    api "com.umeng.umsdk:analytics:${rootProject.ext.cfgs.analytics}"
+
+    api "cn.carbswang.android:NumberPickerView:${rootProject.ext.cfgs.NumberPickerView}"
+
+    //kotlin
+    api "androidx.core:core-ktx:${rootProject.ext.cfgs.core_ktx}"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${rootProject.ext.cfgs.kotlin_version}"
+
+    //数据库调试
+    debugApi 'com.amitshekhar.android:debug-db:1.0.6'
+    debugApi 'com.amitshekhar.android:debug-db-encrypt:1.0.6'
+
+    //viselog
+    api 'com.vise.xiaoyaoyou:viselog:1.1.2'
+
+    //
+    api 'com.github.liqinew:myutils:V.1.1.7'
+
+    // 二维码扫描及二维码生成
+    api "cn.yipianfengye.android:zxing-library:${rootProject.ext.cfgs.zxing_library}"
+
+    //腾讯浏览服务tbs
+    api "com.tencent.tbs.tbssdk:sdk:${rootProject.ext.cfgs.tbssdk}"
+    api "com.contrarywind:Android-PickerView:${rootProject.ext.cfgs.PickerView}"
+
+    //jsbridge
+    api "com.github.lzyzsd:jsbridge:${rootProject.ext.cfgs.jsbridge}"
+
+    //install Apk
+    api "anylife.downloadinstaller:downloadInstaller:${rootProject.ext.cfgs.downloadInstaller}"
+}

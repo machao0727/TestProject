@@ -1,0 +1,107 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+
+// JAVA CODE START
+import java.text.SimpleDateFormat
+
+static def buildTime() {
+    def df = new SimpleDateFormat("yyyy-MM-dd-HH:mm")
+    df.setTimeZone(TimeZone.getTimeZone("GMT+8"))
+    return df.format(new Date())
+}
+
+android {
+    compileSdkVersion rootProject.ext.cfgs.compileSdkVersion
+    buildToolsVersion rootProject.ext.cfgs.buildToolsVersion
+    flavorDimensions "default"
+    defaultConfig {
+        applicationId "com.machao.test_project"
+        multiDexEnabled true
+        minSdkVersion rootProject.ext.cfgs.minSdkVersion
+        targetSdkVersion rootProject.ext.cfgs.targetSdkVersion
+        versionCode rootProject.ext.cfgs.versionCode
+        versionName rootProject.ext.cfgs.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            //设置支持的SO库架构
+            abiFilters 'armeabi', 'armeabi-v7a', 'x86_64', 'arm64-v8a', 'x86'
+        }
+    }
+    productFlavors {
+        official {
+            buildConfigField "String", "BASE_URL", '"http://cqtlxhrmzf.imwork.net:37163/api/"'
+        }
+
+        debug_mc {
+            buildConfigField "String", "BASE_URL", '"http://cqtlxhrmzf.imwork.net:37163/api/"'
+        }
+    }
+    buildTypes {
+        debug {
+            versionNameSuffix "_debug"
+            minifyEnabled false
+            resValue("string", "PORT_NUMBER", "8081")
+//            signingConfig signingConfigs.config
+        }
+        // 用于测试混淆是否正常!
+        beta {
+            versionNameSuffix "_beta"
+            minifyEnabled true
+            debuggable true
+//            signingConfig signingConfigs.config
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        // 如果需要 release的测试打包 注意推送信息!
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    //修改默认项目文件
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res',
+                           'src/main/res/layout/base_layout/',
+                           'src/main/res/layout/activity/',
+                           'src/main/res/layout/fragment/',
+                           'src/main/res/layout/item/',
+                           'src/main/res/layout/widget/']
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def fileName = outputFileName.replace("app", applicationId + "_" + android.defaultConfig.versionName)
+            println fileName
+            outputFileName = new File(fileName)
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/gradle/incremental.annotation.processors'
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':compontent_sdk')
+    implementation project(path: ':compontent_base')
+    implementation project(path: ':compontent_widget')
+    implementation project(path: ':component_net')
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+//    implementation project(path: ':compontent_picture')
+    annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:${rootProject.ext.cfgs.dbflow}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${rootProject.ext.cfgs.glide}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.cfgs.butterknife_compiler}"
+    annotationProcessor "org.permissionsdispatcher:permissionsdispatcher-processor:${rootProject.ext.cfgs.permissionsdispatcher}"
+}

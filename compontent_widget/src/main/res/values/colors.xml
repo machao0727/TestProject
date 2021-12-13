@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--wait dialog-->
+    <color name="mn_colorDialogWindowBg">#00000000</color>
+    <color name="mn_colorDialogTrans">#00000000</color>
+    <color name="mn_colorDialogViewBg">#dd000000</color>
+    <color name="mn_colorDialogTextColor">#ffffff</color>
+    <color name="mn_colorDialogProgressBarColor">#ffffff</color>
+    <color name="mn_colorDialogImageTintColor">#ffffff</color>
+
+    <color name="widget_green">#1ABC9C</color>
+    <color name="widget_black">#333333</color>
+    <color name="widget_blue">#C5C8E1</color>
+    <color name="widget_gray6">#666666</color>
+    <color name="widget_white">#ffffff</color>
+    <color name="widget_blue_1">#6F7FAB</color>
+</resources>
