@@ -10,6 +10,7 @@ import com.google.android.flexbox.FlexboxLayout
 import com.machao.test_project.R
 import com.machao.test_project.mvp.model.QuarterModel
 import com.machao.test_project.mvp.model.YearListModel
+import com.machao.test_project.widget.ShowQuarterDialog
 import kotlinx.android.synthetic.main.item_year_layout.view.*
 import me.drakeet.multitype.ItemViewBinder
 import org.w3c.dom.Text
@@ -38,6 +39,9 @@ class YearListBinder(val mContext: BaseActivity) : ItemViewBinder<YearListModel,
             mTvQuarter.text=quarterModel.quarter;
             mTvData.text=quarterModel.volume_of_mobile_data
             holder.mFlexBox.addView(view)
+        }
+        holder.itemView.setOnClickListener {
+            ShowQuarterDialog(mContext,R.style.myDialogTheme).setData(item.quarterList).show()
         }
     }
 
