@@ -1,12 +1,14 @@
 package com.machao.test_project
 
 import android.annotation.SuppressLint
+import android.os.Handler
 import android.view.View
 import com.dongyuwuye.compontent_base.ListActivity
 import com.dongyuwuye.compontent_base.annotation.ActivityFeature
 import com.machao.test_project.binder.YearListBinder
 import com.machao.test_project.mvp.contact.YearListContact
 import com.machao.test_project.mvp.model.QuarterModel
+import com.machao.test_project.mvp.model.YearListModel
 import com.machao.test_project.mvp.presenter.YearListPresenter
 import me.drakeet.multitype.MultiTypeAdapter
 
@@ -54,7 +56,7 @@ class YearListActivity : ListActivity(),YearListContact.YearListView {
     }
 
     override fun hasLoadMore(): Boolean {
-        return false
+        return true
     }
 
     override fun hasPullRefresh(): Boolean {
@@ -63,7 +65,7 @@ class YearListActivity : ListActivity(),YearListContact.YearListView {
 
     override fun getRegisteredAdapter(): MultiTypeAdapter {
         var mAdapter=MultiTypeAdapter(dataItems)
-        mAdapter.register(QuarterModel::class.java,YearListBinder(this))
+        mAdapter.register(YearListModel::class.java,YearListBinder(this))
         return mAdapter
     }
 

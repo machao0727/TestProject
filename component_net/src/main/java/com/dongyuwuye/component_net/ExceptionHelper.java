@@ -47,8 +47,6 @@ public class ExceptionHelper {
         } else if (e instanceof HttpException) {
             try {
                 String error = ((HttpException) e).response().errorBody().string();
-                BaseResp resp = new Gson().fromJson(error, BaseResp.class);
-                errorMsg = StringUtils.isNullOrEmpty(resp.getMsg()) ? resp.getMessage() : resp.getMsg();
                 if (StringUtils.isNullOrEmpty(errorMsg)) {
                     errorMsg = error;
                 }

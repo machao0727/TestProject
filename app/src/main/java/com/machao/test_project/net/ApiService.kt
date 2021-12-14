@@ -4,6 +4,7 @@ import retrofit2.http.POST
 import com.dongyuwuye.compontent_base.BaseResp
 import com.machao.test_project.mvp.model.NetData
 import io.reactivex.Observable
+import retrofit2.http.GET
 import retrofit2.http.QueryMap
 
 /**
@@ -18,7 +19,7 @@ interface ApiService {
     //    @GET("Sms/ajax_GetValidate")
     //    Observable<BaseResp<codeResp>> GetValidate(@QueryMap Map<String, String> map);
     //获取数据
-    @POST("action/datastore_search")
-    fun getData(@QueryMap map: Map<String, Any>): Observable<BaseResp<NetData>>
+    @GET("action/datastore_search")
+    fun getData(@QueryMap map: Map<String, @JvmSuppressWildcards Any>):Observable<BaseResp<NetData>>
 
 }

@@ -1,12 +1,17 @@
 package com.machao.test_project.mvp.presenter
 
+import android.os.Handler
 import com.dongyuwuye.component_net.RxCallBack
+import com.dongyuwuye.compontent_sdk.utils.ApplicationUtils
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.machao.test_project.dao.YearModelDaoUtils
 import com.machao.test_project.mvp.contact.YearListContact
 import com.machao.test_project.mvp.model.NetData
 import com.machao.test_project.mvp.model.QuarterModel
 import com.machao.test_project.mvp.model.YearListModel
 import com.machao.test_project.net.HttpManager
+import com.machao.test_project.utils.JsonUtils
 import java.time.Year
 import java.util.ArrayList
 
@@ -17,7 +22,8 @@ import java.util.ArrayList
  */
 class YearListPresenter : YearListContact.YearListPresenter {
     private var mRootView: YearListContact.YearListView? = null
-    var year: LinkedHashMap<String, MutableList<QuarterModel>> = linkedMapOf()
+    var yearMap: LinkedHashMap<String, MutableList<QuarterModel>> = linkedMapOf()
+    private var dataItems: MutableList<Any> = mutableListOf()
     private var limit = 5 //每次请求数量 5
     private var offset = 0//起始值0
     private var moreDate = true
@@ -30,7 +36,7 @@ class YearListPresenter : YearListContact.YearListPresenter {
         override fun _onNext(value: NetData?) {
             var temp: List<QuarterModel> = value!!.records
             if (offset==0){//刷新
-                year.clear()
+                yearMap.clear()
             }
             showContent(temp)
             YearModelDaoUtils.saveYearModel(value.records)
@@ -42,6 +48,9 @@ class YearListPresenter : YearListContact.YearListPresenter {
             if (temp.isEmpty()){
                 if (offset==0){//刷新
                     mRootView!!.showError()
+                }else{
+                    mRootView!!.complete(dataItems,false)
+                    mRootView!!.showContent()
                 }
                 return
             }
@@ -51,25 +60,40 @@ class YearListPresenter : YearListContact.YearListPresenter {
     }
 
     fun showContent(temp: List<QuarterModel>){
+        dataItems.clear()
         if (offset==0){//刷新
-            year.clear()
+            yearMap.clear()
         }
         temp.forEach {
             var key = it.quarter!!.substring(0, it.quarter!!.indexOf("-"))
             var quarterList: MutableList<QuarterModel>? = null
-            quarterList = if (year[key] == null) {
+            quarterList = if (yearMap[key] == null) {
                 mutableListOf<QuarterModel>()
             } else {
-                year[key]
+                yearMap[key]
             }
             quarterList!!.add(it)
-            year[key] = quarterList
+            yearMap[key] = quarterList
+        }
+        yearMap.forEach{
+           dataItems.add(YearListModel(it.key,it.value))
         }
         moreDate = temp.size == offset
-        mRootView!!.complete(ArrayList(year.values) as List<Any>?,moreDate)
+        mRootView!!.complete(dataItems,true)
+        mRootView!!.showContent()
     }
 
     override fun refresh() {
+//        offset = 0
+//        val value: NetData = Gson().fromJson(
+//            JsonUtils.getJson("MainJson", ApplicationUtils.application),
+//            object : TypeToken<NetData>() {}.type
+//        )
+//        var temp: List<QuarterModel> = value!!.records
+//        showContent(temp)
+//        YearModelDaoUtils.saveYearModel(value.records)
+
+
         limit = 5
         offset = 0
         HttpManager.instance!!.getData(
@@ -81,6 +105,16 @@ class YearListPresenter : YearListContact.YearListPresenter {
     }
 
     override fun loadMore() {
+//        Handler().postDelayed(Runnable {
+//            offset += 5
+//            val value: NetData = Gson().fromJson(
+//                JsonUtils.getJson("json2", ApplicationUtils.application),
+//                object : TypeToken<NetData>() {}.type
+//            )
+//            var temp: List<QuarterModel> = value!!.records
+//            YearModelDaoUtils.saveYearModel(value.records)
+//            showContent(temp)
+//        },2000)
         offset += 5
         HttpManager.instance!!.getData(
             callBack,

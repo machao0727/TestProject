@@ -8,4 +8,6 @@ package com.machao.test_project.mvp.model
 data class YearListModel(
     var year:String,
     var quarterList: List<QuarterModel>
+
+
 )
