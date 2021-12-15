@@ -22,10 +22,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun BackPressed() {
-    }
-
-    fun aboutMe(view: View){
-
+        finish()
     }
 
     fun start(view: View){

@@ -115,6 +115,8 @@ class YearListPresenter : YearListContact.YearListPresenter {
 //            YearModelDaoUtils.saveYearModel(value.records)
 //            showContent(temp)
 //        },2000)
+
+
         offset += 5
         HttpManager.instance!!.getData(
             callBack,
